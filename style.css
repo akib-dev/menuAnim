@@ -1,0 +1,57 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #464646;
+    margin: 0;
+  }
+  
+  .container {
+    text-align: center;
+  }
+  
+
+  
+  .text-box  {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    position: relative;
+  }
+
+  
+  .text-box p {
+    font-size: 20px;
+    color: white;
+    margin: 0;
+    padding:30px 30px 20px ;
+    border: 1.5px solid white;
+  }
+
+  .text-box p:hover {
+    border: 1.5px solid transparent;
+    border-image: linear-gradient(90deg, #FF7162 0%, #FFC257 100%);
+    border-image-slice: 1;
+  }
+
+  .text-box svg {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+  }
+
+  .door-path{
+    display: none;
+  }
+  
+  .blank-div{
+    position: absolute;
+    top: 0;
+    z-index: 50;
+    background-color: transparent;
+    height: 1px;
+    width: 21px;
+  }
