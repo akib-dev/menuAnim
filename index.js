@@ -1,3 +1,111 @@
+document.addEventListener('DOMContentLoaded', function() {
+  const textBoxSVG = document.querySelector('.text-box');
+  const lineWrapper = document.querySelector('.vr-line');
+  const blankDiv = document.querySelector('.blank-div');
+  const curvedPath = document.querySelector('.path');
+  const curvedPathLength = curvedPath.getTotalLength();
+  
+  curvedPath.style.strokeDasharray = curvedPathLength;
+ 
+
+  textBoxSVG.addEventListener('mouseenter', function() {
+
+    blankDiv.style.backgroundColor = '#464646';
+
+
+    const tl = gsap.timeline();
+
+    
+
+    tl.fromTo(curvedPath, {strokeDashoffset: curvedPathLength, opacity: 0, stroke: 'white'}, {
+      strokeDashoffset: 0, // Animate to fully visible
+      duration: 1,         // Animation duration in seconds
+      ease: "power2.inOut", 
+      display: 'block',
+      opacity: 1,
+      stroke: "#FFAD5A"
+    });
+
+    tl.fromTo(lineWrapper, {stroke: 'white'}, {
+      rotation: 90, // Rotate the group by 90 degrees
+      transformOrigin: "left center", // Transform around the left center
+      duration: 0.8,
+      ease: 'power2.out',
+      stroke: "#FFAD5A"
+    },'0.3'); // Delay the start by 2 seconds
+    
+  });
+
+  textBoxSVG.addEventListener('mouseleave', function() {
+
+    
+    const tl = gsap.timeline();
+    
+
+    tl.fromTo(curvedPath, {opacity: 1, stroke:'#FFAD5A'}, {
+      strokeDashoffset: curvedPathLength, // Animate to fully visible
+      duration: 1,         // Animation duration in seconds
+      ease: "power2.inOut", 
+      display: 'block',
+      opacity: 0,
+      stroke:'white',
+    });
+    tl.fromTo(lineWrapper,{stroke:'#FFAD5A'}, {
+      rotation: 0, // Reset the rotation
+      transformOrigin: "left center", // Transform around the left center
+      duration: 0.9,
+      ease: 'power2.out',
+      stroke:'white',
+    },'0.32'); // Delay the start by 2 seconds
+  });
+});
+
+  
+
+
+
+
+
+
+// document.addEventListener('DOMContentLoaded', function() {
+//   const textBoxSVG = document.querySelector('.text-box p');
+
+//   textBoxSVG.addEventListener('mouseover', function() {
+//       if (!document.querySelector('.dynamic-content')) {
+//           const newHtml = `
+//           <svg class="dynamic-content" xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+//                 <path fill-rule="evenodd" clip-rule="evenodd" d="M0.101562 0.0546875V19.625V20.2539V20.625C11.3889 20.625 20.5391 11.4748 20.5391 0.1875H19.5391C19.5391 10.5872 11.3719 19.0792 1.10156 19.5997L1.10156 0.0546875H0.101562Z" fill="url(#paint0_linear_587_2054)">
+//                   <animate attributeName="d" from="0" to="M0.101562 0.0546875V19.625V20.2539V20.625C11.3889 20.625 20.5391 11.4748 20.5391 0.1875H19.5391C19.5391 10.5872 11.3719 19.0792 1.10156 19.5997L1.10156 0.0546875H0.101562Z" dur="2s" fill="freeze" />
+//                 </path>
+//                 <path d="M1.11328 0.808594H19.4959" stroke="#464646" stroke-width="1.5">
+//                   <animate attributeName="stroke-dasharray" from="0" to="20, 0" dur="2s" fill="freeze" />
+//                 </path>
+//                 <defs>
+//                   <linearGradient id="paint0_linear_587_2054" x1="0.101562" y1="10.3396" x2="20.5391" y2="10.3396" gradientUnits="userSpaceOnUse">
+//                     <stop stop-color="#FF7162"/>
+//                     <stop offset="1" stop-color="#FFC257"/>
+//                   </linearGradient>
+//                 </defs>
+//               </svg>
+//           `;
+          
+//           textBoxSVG.insertAdjacentHTML('afterend', newHtml);
+          
+          
+//         }
+//         const dynamicContent = document.querySelector('.dynamic-content');
+
+//   });
+
+//   textBoxSVG.addEventListener('mouseout', function() {
+//       const dynamicContent = document.querySelector('.dynamic-content');
+//       if (dynamicContent) {
+//             dynamicContent.remove();
+//       }
+//   });
+// });
+
+
 // document.addEventListener('DOMContentLoaded', function() {
 //   const textBoxSVG = document.querySelector('.text-box');
   
@@ -80,50 +188,3 @@
 //     });
   
 //   });
-
-
-
-  
-
-
-
-
-
-
-document.addEventListener('DOMContentLoaded', function() {
-  const textBoxSVG = document.querySelector('.text-box p');
-
-  textBoxSVG.addEventListener('mouseover', function() {
-      if (!document.querySelector('.dynamic-content')) {
-          const newHtml = `
-          <svg class="dynamic-content" xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M0.101562 0.0546875V19.625V20.2539V20.625C11.3889 20.625 20.5391 11.4748 20.5391 0.1875H19.5391C19.5391 10.5872 11.3719 19.0792 1.10156 19.5997L1.10156 0.0546875H0.101562Z" fill="url(#paint0_linear_587_2054)">
-                  <animate attributeName="d" from="0" to="M0.101562 0.0546875V19.625V20.2539V20.625C11.3889 20.625 20.5391 11.4748 20.5391 0.1875H19.5391C19.5391 10.5872 11.3719 19.0792 1.10156 19.5997L1.10156 0.0546875H0.101562Z" dur="2s" fill="freeze" />
-                </path>
-                <path d="M1.11328 0.808594H19.4959" stroke="#464646" stroke-width="1.5">
-                  <animate attributeName="stroke-dasharray" from="0" to="20, 0" dur="2s" fill="freeze" />
-                </path>
-                <defs>
-                  <linearGradient id="paint0_linear_587_2054" x1="0.101562" y1="10.3396" x2="20.5391" y2="10.3396" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#FF7162"/>
-                    <stop offset="1" stop-color="#FFC257"/>
-                  </linearGradient>
-                </defs>
-              </svg>
-          `;
-          
-          textBoxSVG.insertAdjacentHTML('afterend', newHtml);
-          
-          
-        }
-        const dynamicContent = document.querySelector('.dynamic-content');
-
-  });
-
-  textBoxSVG.addEventListener('mouseout', function() {
-      const dynamicContent = document.querySelector('.dynamic-content');
-      if (dynamicContent) {
-            dynamicContent.remove();
-      }
-  });
-});
